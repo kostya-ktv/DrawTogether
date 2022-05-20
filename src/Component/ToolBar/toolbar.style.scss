@@ -1,0 +1,42 @@
+@import '../../style/variables.scss';
+
+.toolBar {
+   background-color: rgb(255, 255, 255);
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 5px 40px;
+   width: 100%;
+   border-bottom: 1px solid rgb(241, 241, 241);
+   z-index: 1;
+}
+
+.icon {
+   width: 60px !important;
+   height: 60px !important;
+   border: 1px solid rgb(255, 246, 246);
+   border-radius: 10%;
+   cursor: pointer;
+   padding: 10px;
+   margin: 3px;
+   transition: all .3s;
+   z-index: 1;
+   &:hover {   
+      border: 1px solid rgb(224, 224, 224);
+      box-shadow: 2px 2px 3px rgb(216, 216, 216);
+      transform: translate3d(-3px, 1px, 5px);
+   }
+   &:active {
+      background-color: rgb(180, 180, 180);
+      transform: translate3d(0px, 0px,0px);
+   }
+}
+#color-picker {
+   position: absolute;
+   z-index: 0;
+   height: 60px;
+   width: 60px;
+   margin-left: 135px;
+   margin-top: 24px;
+   opacity: 0;
+}

@@ -1,0 +1,12 @@
+@import '../../style/variables.scss';
+.canvas-wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 50px;
+}
+canvas {
+   background-color: white;
+   border-radius: 20px;
+   box-shadow: 1px 1px 5px rgb(178, 175, 175);
+}
