@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite'
 import React, {useEffect, useRef } from 'react'
+import Brush from '../../Instruments/Brush/Brush'
 import canvasState from '../../Store/CanvasState/canvas.state'
 import toolsState from '../../Store/ToolsState/tools.state'
-import Brush from '../../Tools/Brush/Brush'
 import './canvas.style.scss'
 
 const Canvas = () => {

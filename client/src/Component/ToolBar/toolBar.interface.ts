@@ -1,6 +1,6 @@
-import { ToolsOptions } from "../../Tools/tools.interface";
+import { InstrumentOptions } from "../../Instruments/instrument.interface";
 
 export interface IToolBar{ 
-   pickTool: (tool: ToolsOptions) => void
+   pickTool: (tool: InstrumentOptions) => void
 }
 

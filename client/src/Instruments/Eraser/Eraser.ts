@@ -1,7 +1,7 @@
 import { IDraw } from "../draw.interface";
-import { Tools } from "../Tools";
+import { BaseInstrument } from "../BaseInstrument";
 
-export default class Eraser extends Tools implements IDraw{
+export default class Eraser extends BaseInstrument implements IDraw{
    mouseDown: boolean = false
 
    constructor(canvas: HTMLCanvasElement){

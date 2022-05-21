@@ -7,8 +7,10 @@ import './Style/style.scss';
 export const App = () => {
   return (
     <div className='app'>
-      <ToolBar/>
-      <SettingBar/>
+      <div>
+        <ToolBar/>
+        <SettingBar/>
+      </div> 
       <Canvas/>
     </div>
   );

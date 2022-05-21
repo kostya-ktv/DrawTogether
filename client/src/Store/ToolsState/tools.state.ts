@@ -1,14 +1,14 @@
 import { makeAutoObservable } from "mobx";
-import { Tool } from "../../Tools/tools.interface";
+import { Instrument } from "../../Instruments/instrument.interface";
 import { IToolsState } from "./tools.interface";
 
 class ToolState implements IToolsState{
-   tool: Tool | undefined
+   instrument: Instrument | undefined
    constructor(){
       makeAutoObservable(this)
    }
-   setTool(tool: Tool) {
-      this.tool = tool
+   setTool(tool: Instrument) {
+      this.instrument = tool
    }
 }
 

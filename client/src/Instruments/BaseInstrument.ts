@@ -1,4 +1,4 @@
-export abstract class Tools {
+export abstract class BaseInstrument {
    protected canvas: HTMLCanvasElement;
    protected ctx: CanvasRenderingContext2D | null
 

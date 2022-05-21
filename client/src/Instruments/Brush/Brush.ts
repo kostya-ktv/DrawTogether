@@ -1,7 +1,7 @@
 import { IDraw } from "../draw.interface";
-import { Tools } from "../Tools";
+import { BaseInstrument } from "../BaseInstrument";
 
-export default class Brush extends Tools implements IDraw{
+export default class Brush extends BaseInstrument implements IDraw{
    mouseDown: boolean = false
 
    constructor(canvas: HTMLCanvasElement){
@@ -27,7 +27,11 @@ export default class Brush extends Tools implements IDraw{
       }
    }
    draw(x: number, y: number) {
-      this.ctx?.lineTo(x, y)
-      this.ctx?.stroke()
+      if(this.ctx !== null){
+         this.ctx?.lineTo(x, y)
+         this.ctx?.stroke()
+         this.ctx.globalAlpha = 2;
+         this.ctx.lineWidth = 20;
+      }
    }
 }

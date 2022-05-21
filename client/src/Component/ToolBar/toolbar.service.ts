@@ -1,20 +1,25 @@
+import { ChangeEvent } from "react";
+import Brush from "../../Instruments/Brush/Brush";
+import Eraser from "../../Instruments/Eraser/Eraser";
+import { InstrumentOptions } from "../../Instruments/instrument.interface";
 import canvasState from "../../Store/CanvasState/canvas.state";
 import toolsState from "../../Store/ToolsState/tools.state";
-import Brush from "../../Tools/Brush/Brush";
-import Eraser from "../../Tools/Eraser/Eraser";
-import { ToolsOptions } from "../../Tools/tools.interface";
 
 export default class ToolBarService {
    private constructor(){}
 
-   static pickTool(tool: ToolsOptions) {
-      switch (tool) {
+   static pickInstrument(instrument: InstrumentOptions) {
+      switch (instrument) {
          case "brush": {
             toolsState.setTool(new Brush(canvasState.canvas as HTMLCanvasElement))
             break;
          }
          case "eraser": {
             toolsState.setTool(new Eraser(canvasState.canvas as HTMLCanvasElement))
+            break;
+         }
+         case "features": {
+            // toolsState.setTool(new Eraser(canvasState.canvas as HTMLCanvasElement))
             break;
          }
          default: break;
@@ -24,5 +29,8 @@ export default class ToolBarService {
    static callPalette = () => {
       const palette = document.querySelector('#color-picker') as HTMLInputElement
       palette.click()
+   }
+   static setColor = (e: React.ChangeEvent<HTMLInputElement>) => {
+
    }
 }
