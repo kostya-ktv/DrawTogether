@@ -1,5 +1,6 @@
 import { IDraw } from "../draw.interface";
 import { BaseInstrument } from "../BaseInstrument";
+import toolsState from "../../Store/ToolsState/tools.state";
 
 export default class Brush extends BaseInstrument implements IDraw{
    mouseDown: boolean = false
@@ -28,6 +29,7 @@ export default class Brush extends BaseInstrument implements IDraw{
    }
    draw(x: number, y: number) {
       if(this.ctx !== null){
+          this.ctx.strokeStyle = toolsState.currentColor
          this.ctx?.lineTo(x, y)
          this.ctx?.stroke()
          this.ctx.globalAlpha = 2;

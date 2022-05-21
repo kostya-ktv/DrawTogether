@@ -1,0 +1,17 @@
+@import '../../Style/variables.scss';
+
+footer {
+   font-size: 12px;
+   margin-top: 20px;
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   &:hover{
+      color: rgb(61, 61, 61);
+   }
+}
+img {
+   width: 20px;
+   height: 20px;
+   margin: 0 5px;
+}

@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import Brush from "../../Instruments/Brush/Brush";
 import Eraser from "../../Instruments/Eraser/Eraser";
-import { InstrumentOptions } from "../../Instruments/instrument.interface";
+import { InstrumentOptions } from "../../Instruments/instrument.type";
 import canvasState from "../../Store/CanvasState/canvas.state";
 import toolsState from "../../Store/ToolsState/tools.state";
 
@@ -31,6 +31,6 @@ export default class ToolBarService {
       palette.click()
    }
    static setColor = (e: React.ChangeEvent<HTMLInputElement>) => {
-
+      toolsState.setColor(e.target.value)
    }
 }

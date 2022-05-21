@@ -27,8 +27,10 @@ export default class Eraser extends BaseInstrument implements IDraw{
       }
    }
    draw(x: number, y: number) {
-      if(this.ctx !== null) this.ctx.strokeStyle = "white"
-      this.ctx?.lineTo(x, y)
-      this.ctx?.stroke()
+      if(this.ctx !== null) {
+         this.ctx.strokeStyle = "white"
+         this.ctx?.lineTo(x, y)
+         this.ctx?.stroke()
+      }
    }
 }

@@ -1,17 +1,10 @@
-import React from 'react';
-import Canvas from './Component/Canvas/Canvas';
-import SettingBar from './Component/SettingBar/SettingBar';
-import ToolBar from './Component/ToolBar/ToolBar';
-import './Style/style.scss';
+import Layout from './Layout/Layout';
+import HotKeyCaller from './Util/EventsListeners';
 
 export const App = () => {
+
+  window.addEventListener('keydown', HotKeyCaller)
   return (
-    <div className='app'>
-      <div>
-        <ToolBar/>
-        <SettingBar/>
-      </div> 
-      <Canvas/>
-    </div>
+    <Layout/>
   );
 }
