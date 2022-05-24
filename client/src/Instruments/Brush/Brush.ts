@@ -29,11 +29,13 @@ export default class Brush extends BaseInstrument implements IDraw{
    }
    draw(x: number, y: number) {
       if(this.ctx !== null){
-          this.ctx.strokeStyle = toolsState.currentColor
+         this.ctx.strokeStyle = toolsState.currentColor
+         this.ctx.shadowBlur = toolsState.shadowSize;
+         this.ctx.shadowColor = toolsState.currentColor
          this.ctx?.lineTo(x, y)
          this.ctx?.stroke()
          this.ctx.globalAlpha = 2;
-         this.ctx.lineWidth = 20;
+         this.ctx.lineWidth = toolsState.brushSize;
       }
    }
 }

@@ -32,5 +32,6 @@ export default class ToolBarService {
    }
    static setColor = (e: React.ChangeEvent<HTMLInputElement>) => {
       toolsState.setColor(e.target.value)
+      toolsState.setTool(new Brush(canvasState.canvas as HTMLCanvasElement))
    }
 }

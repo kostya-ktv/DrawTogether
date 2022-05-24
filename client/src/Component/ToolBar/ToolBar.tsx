@@ -7,6 +7,7 @@ import redo from '../../Assets/Icons/redo.svg';
 import save from '../../Assets/Icons/save.svg';
 import features from '../../Assets/Icons/features.svg';
 import ToolBarService from './toolbar.service'
+import SettingBar from '../SettingBar/SettingBar';
 
 const ToolBar = () => {
   return (
@@ -47,6 +48,7 @@ const ToolBar = () => {
         />
         <img className='icon save' alt='save' src={save} />
       </div>
+      <SettingBar/>
     </div>
   );
 };

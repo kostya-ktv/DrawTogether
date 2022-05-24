@@ -15,7 +15,7 @@ const Canvas = () => {
 
    return (
       <div className='canvas-wrapper'>
-         <canvas width={900} height={700} ref={canvasRef}/>
+         <canvas width={900} height={500} ref={canvasRef}/>
       </div>
    )
 
