@@ -5,6 +5,7 @@ export abstract class BaseInstrument {
    constructor(canvas: HTMLCanvasElement){
       this.canvas = canvas
       this.ctx = canvas.getContext("2d")
+      this.deleteListeners()
    }
    deleteListeners() { 
       this.canvas.onmousemove = null
