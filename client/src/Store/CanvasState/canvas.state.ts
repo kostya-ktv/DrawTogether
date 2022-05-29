@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import { ICanvasState } from "./canvas.interface";
 
 class CanvasState implements ICanvasState{
-   canvas: HTMLCanvasElement | undefined
+   canvas!: HTMLCanvasElement
    undoList: Array<any> = []
    redoList: Array<any> = []
 

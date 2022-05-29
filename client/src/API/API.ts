@@ -36,7 +36,7 @@ export const WSConnector = (id: string) => {
 
 const drawHandler = (msg: any) => {
    const figure = msg.figure
-   const context: CanvasRenderingContext2D  = canvasState.canvas?.getContext("2d")
+   const context: CanvasRenderingContext2D  = canvasState.canvas!.getContext("2d") as CanvasRenderingContext2D
    switch (figure.type) {
       case "brush":
          Brush.draw(context, figure.x, figure.y)

@@ -4,6 +4,7 @@ import Eraser from "../../Instruments/Eraser/Eraser";
 import { InstrumentOptions } from "../../Instruments/instrument.type";
 import canvasState from "../../Store/CanvasState/canvas.state";
 import toolsState from "../../Store/ToolsState/tools.state";
+import userState from "../../Store/UserState/user.state";
 
 export default class ToolBarService {
    private constructor(){}
@@ -11,11 +12,19 @@ export default class ToolBarService {
    static pickInstrument(instrument: InstrumentOptions) {
       switch (instrument) {
          case "brush": {
-            toolsState.setTool(new Brush(canvasState.canvas as HTMLCanvasElement))
+            toolsState.setTool(new Brush(
+               canvasState.canvas, 
+               userState.socket,
+               userState.sessionID
+            ))
             break;
          }
          case "eraser": {
-            toolsState.setTool(new Eraser(canvasState.canvas as HTMLCanvasElement))
+            toolsState.setTool(new Eraser(
+               canvasState.canvas, 
+               userState.socket,
+               userState.sessionID
+            ))
             break;
          }
          case "features": {
@@ -32,6 +41,10 @@ export default class ToolBarService {
    }
    static setColor = (e: React.ChangeEvent<HTMLInputElement>) => {
       toolsState.setColor(e.target.value)
-      toolsState.setTool(new Brush(canvasState.canvas as HTMLCanvasElement))
+      toolsState.setTool(new Brush(
+         canvasState.canvas, 
+         userState.socket,
+         userState.sessionID
+      ))
    }
 }

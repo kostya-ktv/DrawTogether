@@ -58,15 +58,18 @@ class App {
     _runWSServer() {
         const { app, applyTo, getWss } = (0, express_ws_1.default)(this._application);
         app.ws('/ws', (webSocket, req) => {
+            const WSS = getWss();
             console.log('connected');
+            //sending msg to client
             webSocket.send('Successfully connection');
             webSocket.on('message', (msg) => {
                 const message = JSON.parse(msg);
                 switch (message.method) {
                     case 'connection':
-                        connectionHandler(webSocket, message, getWss);
+                        connectionHandler(webSocket, message, WSS);
                         break;
-                    case 'message':
+                    case 'draw':
+                        broadcastConnection(WSS, message);
                         break;
                 }
             });
@@ -74,15 +77,14 @@ class App {
     }
 }
 exports.App = App;
-const connectionHandler = (socket, message, getWss) => {
+const connectionHandler = (socket, message, WSS) => {
     socket.id = message.id;
-    const WSS = getWss();
     broadcastConnection(WSS, message);
 };
 const broadcastConnection = (wss, msg) => {
     wss.clients.forEach((client) => {
         if (client.id === msg.id) {
-            client.send(`User ${msg.userName} connected`);
+            client.send(JSON.stringify(msg));
         }
     });
 };
