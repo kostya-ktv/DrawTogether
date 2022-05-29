@@ -5,8 +5,8 @@ import toolsState from "../../Store/ToolsState/tools.state";
 export default class Brush extends BaseInstrument implements IDraw{
    mouseDown: boolean = false
 
-   constructor(canvas: HTMLCanvasElement){
-      super(canvas)
+   constructor(canvas: HTMLCanvasElement, socket: WebSocket, sessionID: string){
+      super(canvas, socket, sessionID)
       this.listen()
    }
    listen() {
@@ -24,18 +24,27 @@ export default class Brush extends BaseInstrument implements IDraw{
    }
    mouseMoveHandler(e: any) {
       if(this.mouseDown) {
-         this.draw(e.pageX - e.target.offsetLeft, e.pageY - e.target.offsetTop)
+         // this.draw(e.pageX - e.target.offsetLeft, e.pageY - e.target.offsetTop)
+         this.socket.send(JSON.stringify({
+            method: 'draw',
+            id: this.sessionID,
+            figure: {
+               type: 'brush',
+               x: e.pageX - e.target.offsetLeft,
+               y: e.pageY - e.target.offsetTop
+            }
+         }))
       }
    }
-   draw(x: number, y: number) {
-      if(this.ctx !== null){
-         this.ctx.strokeStyle = toolsState.currentColor
-         this.ctx.shadowBlur = toolsState.shadowSize;
-         this.ctx.shadowColor = toolsState.currentColor
-         this.ctx?.lineTo(x, y)
-         this.ctx?.stroke()
-         this.ctx.globalAlpha = 2;
-         this.ctx.lineWidth = toolsState.brushSize;
+   static draw(ctx: CanvasRenderingContext2D, x: number, y: number) {
+      if(ctx !== null){
+         ctx.strokeStyle = toolsState.currentColor
+         ctx.shadowBlur = toolsState.shadowSize;
+         ctx.shadowColor = toolsState.currentColor
+         ctx?.lineTo(x, y)
+         ctx?.stroke()
+         ctx.globalAlpha = 2;
+         ctx.lineWidth = toolsState.brushSize;
       }
    }
 }

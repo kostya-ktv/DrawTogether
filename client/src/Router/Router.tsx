@@ -4,7 +4,11 @@ import { App } from '../App'
 
 const Router = () => {
    const navigate = useNavigate()
-   useEffect(() => navigate(`/f${(+new Date()).toString(16)}`),[navigate])
+
+   useEffect(() => {
+     const id = window.location.href.split('/')[3]
+     id ? navigate(`/${id}`) : navigate(`/f${(+new Date()).toString(16)}`)
+    },[])
 
   return (
     <Routes>

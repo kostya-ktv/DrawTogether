@@ -1,13 +1,13 @@
 import { makeAutoObservable } from "mobx";
-import { DEFAULT_BRUSH_COLOR, DEFAULT_BRUSH_SIZE, DEFAULT_SHADOW_SIZE } from "../../constants";
+import { DEFAULT_BRUSH_COLOR, DEFAULT_BRUSH_SIZE_MIN, DEFAULT_SHADOW_SIZE_MIN } from "../../constants";
 import { Instrument } from "../../Instruments/instrument.type";
 import { IToolsState } from "./tools.interface";
 
 class ToolState implements IToolsState{
    instrument: Instrument | undefined
    currentColor: string = DEFAULT_BRUSH_COLOR
-   brushSize: number = DEFAULT_BRUSH_SIZE
-   shadowSize: number = DEFAULT_SHADOW_SIZE
+   brushSize: number = DEFAULT_BRUSH_SIZE_MIN
+   shadowSize: number = DEFAULT_SHADOW_SIZE_MIN
 
    constructor(){
       makeAutoObservable(this)

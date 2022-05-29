@@ -5,8 +5,8 @@ import toolsState from "../../Store/ToolsState/tools.state";
 export default class Eraser extends BaseInstrument implements IDraw{
    mouseDown: boolean = false
 
-   constructor(canvas: HTMLCanvasElement){
-      super(canvas)
+   constructor(canvas: HTMLCanvasElement, socket: WebSocket, sessionID: string){
+      super(canvas, socket, sessionID)
       this.listen()
    }
    listen() {

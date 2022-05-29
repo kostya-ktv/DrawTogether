@@ -8,8 +8,8 @@ export default class Line extends BaseInstrument {
    currentY: any
    saved: any 
 
-   constructor(canvas: HTMLCanvasElement){
-      super(canvas)
+   constructor(canvas: HTMLCanvasElement, socket: WebSocket, sessionID: string){
+      super(canvas, socket, sessionID)
       this.listen()
    }
    listen() {

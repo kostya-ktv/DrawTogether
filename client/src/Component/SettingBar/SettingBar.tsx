@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './settingBar.style.scss'
 import menuIcon from "../../Assets/Icons/menu.svg"
 import RangeInput from './RangeInput'
+import { DEFAULT_BRUSH_SIZE_MAX, DEFAULT_BRUSH_SIZE_MIN, DEFAULT_SHADOW_SIZE_MIN } from '../../constants'
 
 const SettingBar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -16,8 +17,8 @@ const SettingBar = () => {
       <img src={menuIcon} alt="menu" onClick={openSettingsBarHandler}/>
       {isOpen && 
         <div className='content'>
-          <RangeInput min={10} max={30} title="brush" type='size-brush'/>
-          <RangeInput min={10} max={30} title="shadow" type='shadow-size'/>
+          <RangeInput min={DEFAULT_BRUSH_SIZE_MIN} max={DEFAULT_BRUSH_SIZE_MAX} title="brush" type='size-brush'/>
+          <RangeInput min={DEFAULT_SHADOW_SIZE_MIN} max={DEFAULT_SHADOW_SIZE_MIN} title="shadow" type='shadow-size'/>
         </div>
       }
     </div>

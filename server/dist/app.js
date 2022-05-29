@@ -22,16 +22,20 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
+const cors_1 = __importDefault(require("cors"));
 const express_1 = __importStar(require("express"));
 const global_constants_1 = require("./global.constants");
 const root_router_1 = require("./src/Router/root.router");
 const logger_service_1 = require("./src/Service/Logger/logger.service");
-const WebSocketServer_1 = require("./WebSocketServer");
+const express_ws_1 = __importDefault(require("express-ws"));
 class App {
     constructor() {
-        this._app = (0, express_1.default)();
+        this._application = (0, express_1.default)();
         this._root_router = new root_router_1.RootRouter().getRouter();
         this._port = process.env.SERVER_PORT;
         this._log = logger_service_1.Logger.getInstance();
@@ -42,13 +46,43 @@ class App {
         return App._instance;
     }
     run() {
+        this._runWSServer();
         this._toUse();
-        this._app.listen(this._port, () => this._log.success(`server running on port: ${this._port}`));
+        this._application.listen(this._port, () => this._log.success(`server running on port: ${this._port}`));
     }
     _toUse() {
-        this._app.use((0, express_1.urlencoded)());
-        this._app.use(global_constants_1.URL_API, this._root_router);
-        this._app.use("/ws-server", WebSocketServer_1.WebSocketServer.wsRouter);
+        this._application.use((0, cors_1.default)());
+        this._application.use((0, express_1.urlencoded)());
+        this._application.use(global_constants_1.URL_API, this._root_router);
+    }
+    _runWSServer() {
+        const { app, applyTo, getWss } = (0, express_ws_1.default)(this._application);
+        app.ws('/ws', (webSocket, req) => {
+            console.log('connected');
+            webSocket.send('Successfully connection');
+            webSocket.on('message', (msg) => {
+                const message = JSON.parse(msg);
+                switch (message.method) {
+                    case 'connection':
+                        connectionHandler(webSocket, message, getWss);
+                        break;
+                    case 'message':
+                        break;
+                }
+            });
+        });
     }
 }
 exports.App = App;
+const connectionHandler = (socket, message, getWss) => {
+    socket.id = message.id;
+    const WSS = getWss();
+    broadcastConnection(WSS, message);
+};
+const broadcastConnection = (wss, msg) => {
+    wss.clients.forEach((client) => {
+        if (client.id === msg.id) {
+            client.send(`User ${msg.userName} connected`);
+        }
+    });
+};

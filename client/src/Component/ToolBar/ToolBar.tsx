@@ -46,7 +46,7 @@ const ToolBar = () => {
           id='color-picker'
           onChange={(e) => ToolBarService.setColor(e)}
         />
-        <img className='icon palette' alt='palette' src={palette} onClick={ToolBarService.callPalette}/>
+        <img className='icon palette' alt='palette' src={palette} onClick={() => ToolBarService.callPalette()}/>
       </div>
 
       <div style={{ display: 'flex' }}>
