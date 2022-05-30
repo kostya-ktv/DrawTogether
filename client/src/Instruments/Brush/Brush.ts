@@ -14,8 +14,15 @@ export default class Brush extends BaseInstrument implements IDraw{
       this.canvas.onmouseup = this.mouseUpHandler.bind(this)
       this.canvas.onmousedown = this.mouseDownHandler.bind(this)
    }
-   mouseUpHandler() {
+   mouseUpHandler(e: any) {
       this.mouseDown = false
+      this.socket.send(JSON.stringify({
+         method: 'draw',
+         id: this.sessionID,
+         figure: {
+            type: 'finish'
+         }
+      }))
    }
    mouseDownHandler(e: any) {
       this.mouseDown = true

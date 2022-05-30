@@ -47,4 +47,13 @@ export default class ToolBarService {
          userState.sessionID
       ))
    }
+   static saveImage = () => {
+      const url = canvasState.canvas.toDataURL()
+      const reference = document.createElement('a')
+      reference.href = url
+      reference.download = 'snapshot.jpg'
+      document.body.appendChild(reference)
+      reference.click()
+      document.body.removeChild(reference)
+   }
 }

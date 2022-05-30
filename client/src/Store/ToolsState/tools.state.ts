@@ -4,7 +4,7 @@ import { Instrument } from "../../Instruments/instrument.type";
 import { IToolsState } from "./tools.interface";
 
 class ToolState implements IToolsState{
-   instrument: Instrument | undefined
+   instrument!: Instrument
    currentColor: string = DEFAULT_BRUSH_COLOR
    brushSize: number = DEFAULT_BRUSH_SIZE_MIN
    shadowSize: number = DEFAULT_SHADOW_SIZE_MIN

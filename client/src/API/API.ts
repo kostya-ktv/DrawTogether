@@ -10,6 +10,7 @@ export const WSConnector = (id: string) => {
       const socket = new WebSocket(WS_URL)
       userState.setSocket(socket)
       userState.setSessionID(id)
+
       socket.onopen = () => {
          console.log('connection to server: successfully')
          socket.send(JSON.stringify({
@@ -18,8 +19,11 @@ export const WSConnector = (id: string) => {
             method: 'connection'
          }))
       }
+      
       socket.onmessage = (event: MessageEvent) => {
-         let message: MessageType = JSON.parse(event.data)
+         try {
+            console.log(event)
+            let message: MessageType = JSON.parse(event.data)
          switch (message.method) {
             case 'connection':
                console.log(`user: ${message.userName} connected`)
@@ -31,6 +35,10 @@ export const WSConnector = (id: string) => {
             default:
                break;
          }
+         } catch (error) {
+            console.log(error)
+         }
+         
    }
 }
 
@@ -40,6 +48,9 @@ const drawHandler = (msg: any) => {
    switch (figure.type) {
       case "brush":
          Brush.draw(context, figure.x, figure.y)
+         break;
+      case "finish":
+         context.beginPath()
          break;
    
       default:

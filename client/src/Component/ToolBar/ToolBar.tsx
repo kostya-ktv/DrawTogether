@@ -62,7 +62,7 @@ const ToolBar = () => {
           src={redo}
           onClick={() => canvasState.redo()}
         />
-        <img className='icon save' alt='save' src={save} />
+        <img className='icon save' alt='save' src={save} onClick={() => ToolBarService.saveImage()}/>
         <img className='icon trash' alt='trash' src={trash} onClick={() => canvasState.clearCanvas()}/>
       </div>
       <SettingBar/>
